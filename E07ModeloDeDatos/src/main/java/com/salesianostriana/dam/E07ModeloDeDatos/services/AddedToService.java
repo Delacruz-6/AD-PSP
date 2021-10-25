@@ -10,26 +10,17 @@ import org.springframework.stereotype.Service;
 @Builder
 public class AddedToService extends
         BaseService<AddedTo, AddedToPK, AddedToRepository> {
-    /*
-    public Song songPlaylist(Song s, Artist a, Playlist p) {
 
-        // 1. Obtener todas las asignaturas del curso
-        // 2. Crear una nueva instancia de Notas por cada asignatura
-        // 3. Insertarlas en la base de datos.
 
-        s.getAddedTos().forEach(playlist -> {
-            AddedTo n = AddedTo.builder()
-                    .song(playlist)
-                    .
 
+    public Playlist PlaylistSong(Playlist p, Song s){
+        p.getAddedTos().forEach(playlist -> {
+            AddedTo ad = AddedTo
+                    .builder()
+                    .song(s)
                     .build();
-            save(n);
+            save(ad);
         });
-
-        return n;
+        return p;
     }
-
-     */
-
-
 }

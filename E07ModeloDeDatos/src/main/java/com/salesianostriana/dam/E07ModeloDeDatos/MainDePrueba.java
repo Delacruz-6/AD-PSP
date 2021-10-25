@@ -1,8 +1,9 @@
 package com.salesianostriana.dam.E07ModeloDeDatos;
 
+import com.salesianostriana.dam.E07ModeloDeDatos.models.AddedTo;
 import com.salesianostriana.dam.E07ModeloDeDatos.models.Artist;
+import com.salesianostriana.dam.E07ModeloDeDatos.models.Playlist;
 import com.salesianostriana.dam.E07ModeloDeDatos.models.Song;
-import com.salesianostriana.dam.E07ModeloDeDatos.repositories.PlaylistRepository;
 import com.salesianostriana.dam.E07ModeloDeDatos.services.AddedToService;
 import com.salesianostriana.dam.E07ModeloDeDatos.services.ArtistService;
 import com.salesianostriana.dam.E07ModeloDeDatos.services.PlaylistService;
@@ -11,6 +12,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -20,60 +25,51 @@ public class MainDePrueba {
     private final SongService sService;
     private final ArtistService aService;
     private final AddedToService addService;
+    private Object LocalDateTime;
 
     @PostConstruct
     public void test() {
 
 
-        Artist artist = Artist.builder()
+        Artist artist1 = Artist.builder()
                 .nombre("SFDK")
                 .build();
 
-        aService.edit(artist);
+        aService.edit(artist1);
 
 
         Song cancion1 = Song.builder()
-                .nombre("2º DAM")
-                .tutor("Luismi")
+                .title("Sevilla")
+                .album("Siempre fuertes 2")
+                .year("2009")
+                .artista(artist1)
                 .build();
 
-        cursoService.save(dam2);
+        sService.save(cancion1);
 
-        List<Asignatura> asignaturas = List.of(
-                Asignatura.builder().nombre("PSP").profesor("Luismi").build(),
-                Asignatura.builder().nombre("EIE").profesor("Jesús").build(),
-                Asignatura.builder().nombre("PMDM").profesor("Miguel").build()
+        Playlist rap = Playlist.builder()
+                .name("sdfk")
+                .description("Lista de canciones de SFDK")
+                .build();
+
+        List<AddedTo> addedToList = List.of(
+                AddedTo.builder().date(LocalDate.now()).order("1º").playlist(rap).song(cancion1).build()
         );
 
-        for(int i = 0; i < asignaturas.size(); i++){
-            asignaturas.get(i).addToCurso(dam2);
+        for (int i = 0; i < addedToList.size(); i++){
+            addedToList.get(i).addToSongs(cancion1);
         }
 
-        asignaturaService.saveAll(asignaturas);
+        addService.saveAll(addedToList);
 
 
-        /*
-        Asignatura asignatura = Asignatura.builder()
-                .nombre("AD")
-                .profesor("Luismi")
-                .alumnos(new ArrayList<>())
-                .build();
-        asignaturaService.save(asignatura);
-        List<Alumno> nuevosAlumnos = List.of(
-          Alumno.builder().nombre("Alejandro").asignaturas(new ArrayList<>()).build(),
-          Alumno.builder().nombre("Cynthia").asignaturas(new ArrayList<>()).build(),
-          Alumno.builder().nombre("Pablo").asignaturas(new ArrayList<>()).build(),
-          Alumno.builder().nombre("Manuel").asignaturas(new ArrayList<>()).build()
-        );
-        nuevosAlumnos.forEach(nuevoAlumno -> nuevoAlumno.addAsignatura(asignatura));
-        alumnoService.saveAll(nuevosAlumnos);
-        */
+        Optional<Playlist> playlistOptional = pService.findById(1L);
 
-        alumno = notasService.matriculaCurso(alumno, dam2);
-
-
-
-
+        playlistOptional.ifPresent(p -> {
+            System.out.println("--------------Playlist--------------");
+            System.out.println("Nombre: " + p.getName());
+            System.out.println("Descripcion: " + p.getDescription());
+        });
 
     }
 

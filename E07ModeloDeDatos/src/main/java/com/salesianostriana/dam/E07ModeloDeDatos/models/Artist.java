@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,6 @@ public class Artist  implements Serializable {
 
     private String nombre;
 
-    @OneToMany(mappedBy = "artista")
-    private List<Song> songs;
+    @OneToMany(mappedBy = "artista", fetch = FetchType.EAGER)
+    private List<Song> songs = new ArrayList<>();
 }

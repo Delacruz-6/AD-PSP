@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -19,7 +21,7 @@ public class AddedTo implements Serializable {
     private AddedToPK id = new AddedToPK();
 
     @ManyToOne
-    @MapsId("plalist_id")
+    @MapsId("playlist_id")
     @JoinColumn(name="playlist_id")
     private Playlist playlist;
 
@@ -28,7 +30,7 @@ public class AddedTo implements Serializable {
     @JoinColumn(name="song_id")
     private Song song;
 
-    private Date dateTime;
+    private LocalDate date;
 
     private String order;
 

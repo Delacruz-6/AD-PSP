@@ -5,6 +5,8 @@ import com.salesianostriana.dam.E07ModeloDeDatos.models.Playlist;
 import com.salesianostriana.dam.E07ModeloDeDatos.repositories.ArtistRepository;
 import com.salesianostriana.dam.E07ModeloDeDatos.repositories.PlaylistRepository;
 import com.salesianostriana.dam.E07ModeloDeDatos.services.base.BaseService;
+import org.springframework.stereotype.Service;
 
-public class ArtistService extends BaseService<Artist, Long, ArtistRepository> {{
+@Service
+public class ArtistService extends BaseService<Artist, Long, ArtistRepository> {
 }

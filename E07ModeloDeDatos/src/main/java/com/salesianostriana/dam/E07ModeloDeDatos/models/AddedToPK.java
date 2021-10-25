@@ -11,8 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor @AllArgsConstructor
 public class AddedToPK implements Serializable {
 
-    private Long alumno_id;
+    private Long playlist_id;
 
-    private Long asignatura_id;
+    private Long song_id;
 
 }

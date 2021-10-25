@@ -30,7 +30,7 @@ public class Song implements Serializable {
 
 
     @Builder.Default
-    @OneToMany(mappedBy = "playlist")
+    @OneToMany(mappedBy = "playlist", fetch = FetchType.EAGER)
     private List<AddedTo> AddedTos = new ArrayList<>();
 
 
