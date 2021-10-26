@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class Playlist implements Serializable {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 

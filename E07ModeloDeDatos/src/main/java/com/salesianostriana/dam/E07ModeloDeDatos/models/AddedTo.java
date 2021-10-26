@@ -1,6 +1,9 @@
 package com.salesianostriana.dam.E07ModeloDeDatos.models;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class AddedTo implements Serializable {
 
 
@@ -29,10 +33,10 @@ public class AddedTo implements Serializable {
     @MapsId("song_id")
     @JoinColumn(name="song_id")
     private Song song;
+    @CreatedDate
+    private LocalDateTime date;
 
-    private LocalDate date;
-
-    private String order;
+    private Integer orden;
 
 
     /*
