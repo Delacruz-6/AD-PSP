@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class Playlist implements Serializable {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @JoinColumn(name="playlist_id")
     private Long id;
