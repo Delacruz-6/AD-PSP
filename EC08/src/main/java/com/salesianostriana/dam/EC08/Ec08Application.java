@@ -1,5 +1,4 @@
 package com.salesianostriana.dam.EC08;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
