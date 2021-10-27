@@ -17,6 +17,7 @@ public class Playlist implements Serializable {
 
     @GeneratedValue
     @Id
+    @JoinColumn(name="playlist_id")
     private Long id;
 
     private String name, description;

@@ -11,7 +11,17 @@ import org.springframework.stereotype.Service;
 public class AddedToService extends
         BaseService<AddedTo, AddedToPK, AddedToRepository> {
 
+    public void createAddedTo(Playlist p, Song s, PlaylistService pService, SongService sService){
+        AddedTo addedTo = AddedTo.builder()
+                .build();
 
+        addedTo.addPlaylistSong(p,s);
+
+        save(addedTo);
+        sService.save(s);
+        pService.save(p);
+
+    }
 
     public Playlist PlaylistSong(Playlist p, Song s){
         p.getAddedTos().forEach(playlist -> {

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +43,7 @@ public class MainDePrueba {
                 .year("2009")
                 .artista(artist1)
                 .build();
+        cancion1.addArtista(artist1);
 
         sService.save(cancion1);
 
@@ -52,17 +52,12 @@ public class MainDePrueba {
                 .description("Lista de canciones de SFDK")
                 .build();
 
-        List<AddedTo> addedToList = List.of(
-                AddedTo.builder().date(LocalDate.now()).order("1º").playlist(rap).song(cancion1).build()
-        );
+        pService.save(rap);
+        addService.PlaylistSong(rap,cancion1);
 
-        for (int i = 0; i < addedToList.size(); i++){
-            addedToList.get(i).addToSongs(cancion1);
-        }
-
-        addService.saveAll(addedToList);
-
-
+        AddedTo add= AddedTo.builder().build();
+        add.addPlaylistSong(cancion1,rap);
+        addService.createAddedTo(rap,cancion1,pService,sService);
         Optional<Playlist> playlistOptional = pService.findById(1L);
 
         playlistOptional.ifPresent(p -> {
@@ -70,6 +65,11 @@ public class MainDePrueba {
             System.out.println("Nombre: " + p.getName());
             System.out.println("Descripcion: " + p.getDescription());
         });
+        System.out.println("Nombre: " + addedTo.getOrder());
+        System.out.println("Nombre: " + addedTo.getDate());
+        System.out.println("Nombre: " + addedTo.getSong());
+        System.out.println("Nombre: " + addedTo.getPlaylist());
+
 
     }
 

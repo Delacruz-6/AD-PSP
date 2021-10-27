@@ -30,8 +30,10 @@ public class AddedTo implements Serializable {
     @JoinColumn(name="song_id")
     private Song song;
 
+    @OrderBy
     private LocalDate date;
 
+    @JoinColumn(name="orden")
     private String order;
 
 

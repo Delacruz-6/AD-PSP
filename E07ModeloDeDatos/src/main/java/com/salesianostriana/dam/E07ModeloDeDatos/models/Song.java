@@ -17,6 +17,7 @@ public class Song implements Serializable {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @JoinColumn(name="song_id")
     private Long id;
 
     private String title;
