@@ -1,15 +1,20 @@
 package com.salesianostriana.dam.EC08.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-public class Cliente {
 
-    @GeneratedValue
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Cliente {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
+
+    private LocalDateTime fechaRegistro;
+
 
 
 }
